@@ -35,10 +35,10 @@ class CapturingLoggerDecorator extends \Psr\Log\AbstractLogger implements \Psr\L
 
     /**
      * @param mixed $level
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
      */
-    public function log($level, $message, array $context = array())
+    public function log($level, string|\Stringable $message, array $context = []): void
     {
         $this->upstreamLogger->log($level, $message, $context);
         $this->buffer[] = [time(), $level, $message];
